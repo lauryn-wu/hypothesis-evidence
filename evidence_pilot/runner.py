@@ -3,6 +3,7 @@
 import fcntl
 import math
 import re
+import sys
 import time
 from contextlib import contextmanager
 from pathlib import Path
@@ -12,16 +13,27 @@ from .common import digest, read_json, write_json
 from .design import make_plan, messages_for, note_text, parse_and_score, schema_for, scripted_response
 
 
+def design_for(config):
+    """Select the separately versioned task without changing the original design."""
+    if isinstance(config, dict) and config.get("design_version") == "source-status-v1":
+        from . import source_status
+        return source_status
+    # Keep the original runner's public hooks, including its transport fixtures.
+    return sys.modules[__name__]
+
+
 class ScriptedProvider:
     """Software fixtures only: these responses are never model observations."""
 
-    def __init__(self, policy):
+    def __init__(self, policy, design=None):
         if policy not in ("correct", "contaminated"):
             raise ValueError("Unknown scripted fixture")
         self.policy = policy
+        self.design = design
 
     def complete_task(self, case, node, note):
-        text = scripted_response(case, node, policy=self.policy, note=note)
+        response_fn = self.design.scripted_response if self.design is not None else scripted_response
+        text = response_fn(case, node, policy=self.policy, note=note)
         return {"text": text, "model": "SCRIPTED-TEST-FIXTURE",
                 "usage": {"input_tokens": 0, "output_tokens": 0},
                 "response": {"fixture": self.policy, "text": text}}
@@ -60,10 +72,13 @@ def load_results(directory):
 
 
 def write_summary(directory):
-    from .analysis import render_markdown, summarize
     directory = Path(directory)
     manifest = read_json(directory / "manifest.json")
     plan = read_json(directory / "plan.json")
+    if plan.get("design_version") == "source-status-v1":
+        from .source_status_analysis import render_markdown, summarize
+    else:
+        from .analysis import render_markdown, summarize
     cost = None
     if manifest["backend"] == "openai":
         config = plan["config"]
@@ -80,6 +95,9 @@ def write_summary(directory):
 
 
 def _write_notes(directory, plan, results, evidence_type):
+    if plan.get("design_version") == "source-status-v1":
+        from .source_status_analysis import write_notes
+        return write_notes(directory, plan, results, evidence_type)
     lines = ["# Generated notes", "", f"**{evidence_type}**", "",
              "Review every note before interpreting the contrasts. Check hypothetical notes for "
              "claims that a prediction already happened, and factual summaries for invented observations. "
@@ -129,7 +147,8 @@ def _validate_schedule(plan):
 
 def execute(config, output, backend="scripted", policy="correct", budget_usd=None,
             max_calls=None, resume=False, provider_factory=None, progress=False):
-    plan = make_plan(config)
+    design = design_for(config)
+    plan = design.make_plan(config)
     cases = _validate_schedule(plan)
     config = plan["config"]
     if backend not in ("scripted", "openai"):
@@ -178,7 +197,7 @@ def execute(config, output, backend="scripted", policy="correct", budget_usd=Non
             provider = (provider_factory or OpenAIProvider)(ledger, model=config["model"],
                                                           raw_directory=directory / "responses")
         else:
-            provider = ScriptedProvider(policy)
+            provider = ScriptedProvider(policy, design)
         results = load_results(directory)
         known = {node["id"] for node in plan["nodes"]}
         if not set(results) <= known:
@@ -205,9 +224,9 @@ def execute(config, output, backend="scripted", policy="correct", budget_usd=Non
                         if progress:
                             print(f"[{position}/{plan['planned_calls']}] {request_id}: blocked by missing or invalid note", flush=True)
                         continue
-                    note = note_text(parent["data"])
-                messages = messages_for(case, node, note=note)
-                schema = schema_for(case, node)
+                    note = design.note_text(parent["data"])
+                messages = design.messages_for(case, node, note=note)
+                schema = design.schema_for(case, node)
                 maximum = config["note_max_output_tokens" if node["stage"] == "note" else "decision_max_output_tokens"]
                 request = {"id": request_id, "messages": messages, "schema": schema, "max_output_tokens": maximum}
                 write_json(directory / "requests" / (request_id + ".json"), request)
@@ -224,7 +243,7 @@ def execute(config, output, backend="scripted", policy="correct", budget_usd=Non
                     else:
                         response = provider.complete(messages, schema, maximum, request_id)
                     record.update(model=response["model"], usage=response["usage"], text=response["text"])
-                    data = parse_and_score(case, node, response["text"])
+                    data = design.parse_and_score(case, node, response["text"])
                     if not isinstance(data, dict):
                         raise ValueError("Scored response must be an object")
                     record.update(status="valid", data=data, completed_at=time.time())

@@ -1,0 +1,11 @@
+{
+  "design_version": "source-status-v1",
+  "seed": 20261010,
+  "cases": 32,
+  "intervening_cases": 8,
+  "model": "gpt-4.1-mini-2025-04-14",
+  "input_usd_per_million": 0.4,
+  "output_usd_per_million": 1.6,
+  "note_max_output_tokens": 512,
+  "decision_max_output_tokens": 256
+}

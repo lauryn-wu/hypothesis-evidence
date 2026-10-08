@@ -4,8 +4,7 @@ import argparse
 from pathlib import Path
 
 from .common import read_json, write_json
-from .design import make_plan, messages_for, schema_for
-from .runner import execute, run_lock, write_summary
+from .runner import design_for, execute, run_lock, write_summary
 
 
 def main():
@@ -27,7 +26,9 @@ def main():
     args = parser.parse_args()
     try:
         if args.command == "plan":
-            plan = make_plan(read_json(args.config))
+            config = read_json(args.config)
+            design = design_for(config)
+            plan = design.make_plan(config)
             output = Path(args.out)
             if output.exists() and (not output.is_dir() or any(output.iterdir())):
                 raise ValueError("Plan output directory must be new or empty")
@@ -37,8 +38,8 @@ def main():
             for node in plan["nodes"]:
                 case = cases[node["case_id"]]
                 note = "[GENERATED NOTE INSERTED ONLY AFTER DEPENDENCY COMPLETES]" if node["depends_on"] else None
-                prompts.append({"node": node, "schema": schema_for(case, node),
-                                "messages": messages_for(case, node, note=note)})
+                prompts.append({"node": node, "schema": design.schema_for(case, node),
+                                "messages": design.messages_for(case, node, note=note)})
             write_json(output / "prompts.json", prompts)
             print(f"{plan['planned_calls']} planned requests; {len(plan['cases'])} task instances. No model calls made.")
             print(f"Review {output / 'prompts.json'}")
