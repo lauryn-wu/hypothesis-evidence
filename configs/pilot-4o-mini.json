@@ -1,0 +1,10 @@
+{
+  "design_version": "hypothetical-evidence-v1",
+  "seed": 20261009,
+  "cases": 24,
+  "model": "gpt-4o-mini-2024-07-18",
+  "input_usd_per_million": 0.15,
+  "output_usd_per_million": 0.6,
+  "note_max_output_tokens": 768,
+  "decision_max_output_tokens": 384
+}
