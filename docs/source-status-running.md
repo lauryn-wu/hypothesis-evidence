@@ -1,6 +1,6 @@
 # Running the source-status pilot
 
-Run these commands from the repository root on the `source-status-pilot` branch. Python 3.10+ on macOS or Linux is sufficient. No GPU or additional package is needed.
+Run these commands from the repository root on `main`. Python 3.10+ on macOS or Linux is sufficient. No GPU or additional package is needed. The completed pilot's [results](../results/source-status.md) are included in the repository.
 
 ## Offline checks
 

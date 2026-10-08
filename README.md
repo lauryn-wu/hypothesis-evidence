@@ -1,76 +1,51 @@
 # Hypothesis and evidence
 
-Does explaining a hypothetical finding make a language model more likely to later report it as an observation?
+This project tests whether a language model confuses hypothetical findings with observations after explaining how they could occur.
 
-The current pilot asks a model to distinguish completed check results, hypothetical findings, and findings absent from an inspection record. It compares a neutral restatement with a causal explanation, testing each immediately and after eight other case records. The original record stays available throughout.
+The completed pilot found no such errors in GPT-4.1-mini. The code, experimental design, and results are included here.
 
-There are 32 cases drawn from eight template families. Each case needs two note-generation calls and four classification calls: **192 API calls for the full pilot**. The same saved note is used for both timing conditions. The intervening records are generated locally and require no extra API calls.
+## Experiment
 
-The original fault-ranking experiment remains available with its original configurations. Its design and analysis are separate from this pilot.
+Each inspection record contains one observed finding and two hypothetical findings. The model writes either a neutral restatement or a causal explanation of the hypothetical findings, then classifies them as observed, hypothetical, or absent from the original record. An additional finding, absent from the record, serves as a control.
 
-## Setup
+Classification happens immediately or after eight other case records. The same generated note is used for both conditions, and the original record remains visible throughout.
 
-Python 3.10 or newer on macOS or Linux. No packages or GPU are required.
+## Results
 
-From an existing clone:
+Run `status-001` used `gpt-4.1-mini-2025-04-14`, with 32 paired cases drawn from eight template families. All 64 note-generation calls and 128 classification calls completed successfully.
+
+| Note | Classification timing | Hypothetical findings labelled observed | All classification errors |
+|---|---|---:|---:|
+| Restatement | Immediate | 0/64 | 0/128 |
+| Restatement | After eight other cases | 0/64 | 0/128 |
+| Causal explanation | Immediate | 0/64 | 0/128 |
+| Causal explanation | After eight other cases | 0/64 | 0/128 |
+
+The predicted elaboration effect did not appear. This is a narrow result: the model could consult explicit source labels, and even the longer prompts contained only about 1,400 input tokens. Note lengths also differed between writing conditions. Repeated conditions and findings within cases are not independent samples.
+
+See the [results summary](results/source-status.md) for controls, note checks, and limitations, or the [JSON summary](results/source-status.json) for the numerical results. The current design is complete; no further runs are planned.
+
+## Run locally
+
+Python 3.10 or newer on macOS or Linux. Only the standard library is required.
 
 ```bash
-git fetch origin
-git switch source-status-pilot
-git pull --ff-only
-python3 -m unittest discover -s tests -v
-```
-
-For a fresh clone:
-
-```bash
-git clone --branch source-status-pilot https://github.com/lauryn-wu/hypothesis-evidence.git
+git clone https://github.com/lauryn-wu/hypothesis-evidence.git
 cd hypothesis-evidence
 python3 -m unittest discover -s tests -v
 ```
 
-## Check the experiment offline
-
-Export the full schedule and prompts:
-
-```bash
-python3 -m evidence_pilot plan \
-  --config configs/source-status.json --out runs/status-plan-001
-```
-
-Run the four-case software check with scripted responses:
+Run a four-case check with scripted responses:
 
 ```bash
 python3 -m evidence_pilot run \
   --config configs/source-status-smoke.json --out runs/status-offline-001
-cat runs/status-offline-001/summary.md
 ```
 
-Scripted responses check the implementation. They are not model results.
+This checks the software without API calls. [Running instructions](docs/source-status-running.md) cover prompt export, live runs, saved outputs, and recovery after interruptions.
 
-## Run the pilot
+## Design and earlier work
 
-Set `OPENAI_API_KEY` in your terminal if it is not already available. Run `read -s OPENAI_API_KEY`, paste the key and press Enter, then run `export OPENAI_API_KEY`.
-
-```bash
-python3 -m evidence_pilot run \
-  --config configs/source-status.json --backend openai \
-  --out runs/status-001 --budget-usd 2 --max-calls 192
-cat runs/status-001/summary.md
-```
-
-This uses `gpt-4.1-mini-2025-04-14`. The dollar limit is a client-side safeguard based on configured token prices, not a provider billing limit. The default backend is offline; paid requests require `--backend openai` and both limits.
-
-Read `runs/status-001/notes.md` alongside the summary. The two writing conditions request the same length and number of check-ID mentions. Actual lengths and mentions are reported, and every valid note is retained. The software does not decide whether a note stayed hypothetical or followed the requested writing style.
-
-Run directories contain the exact prompts, raw responses, parsed outcomes, schedule, and accounting. They are excluded from Git. After an interruption, add `--resume` to the original command. Completed and uncertain requests are not repeated. See [source-status running instructions](docs/source-status-running.md).
-
-## Interpretation
-
-The main comparison asks whether elaboration adds more hypothetical-to-observed errors after intervening cases than it does immediately. Separate outputs show observed-result errors, false mentions of absent findings, and confusion matrices. Missing responses remain missing.
-
-This is a development screen. A difference needs note review and follow-up on new cases before supporting a broader claim. No live results from the new experiment are included here.
-
-- [Source-status design, controls, and related work](docs/source-status-design.md)
-- [Original fault-ranking design](docs/design.md)
-- [Original experiment commands and recovery](docs/running.md)
+- [Source-status experiment and related work](docs/source-status-design.md)
+- [Original fault-ranking experiment](docs/design.md), retained with its own configurations and analysis
+- [Original experiment commands](docs/running.md)

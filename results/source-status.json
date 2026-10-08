@@ -1,0 +1,693 @@
+{
+  "run_id": "status-001",
+  "code_commit": "5d261f081228bbc63a3bc48aec456174137721e3",
+  "source_fingerprint": "3db5d4475f53d43b4f0c88f617b92dd745ef252a853abf2f5948b20ba25c17f8",
+  "plan_fingerprint": "ae9025d7e42fbc0f7875258f05b132b193ed39c9ad9e0cc386852604dc2da8eb",
+  "design_version": "source-status-v1",
+  "evidence_type": "LIVE_MODEL_DEVELOPMENT_DATA",
+  "model_requested": "gpt-4.1-mini-2025-04-14",
+  "planned_calls": 192,
+  "recorded_calls": 192,
+  "planned_cases": 32,
+  "template_families": 8,
+  "statuses": {
+    "valid": 192
+  },
+  "warning": "Development data from generated records with reused template families. Cases, findings, and repeated conditions are not interchangeable independent samples. Missing or invalid responses are not correct responses. Note semantics require review before attributing an error to later use of a hypothetical note. No confidence intervals or prevalence claims.",
+  "primary_metric": "target_false_observed_rate",
+  "primary_contrast": "elaboration_by_interleaving",
+  "conditions": {
+    "restate_immediate": {
+      "planned_n": 32,
+      "valid_n": 32,
+      "missing_or_invalid_n": 0,
+      "target_false_observed_n": 0,
+      "valid_target_finding_n": 64,
+      "metrics": {
+        "target_false_observed_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "any_target_false_observed": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "classification_error_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "recognition_error_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "observed_miss_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "foil_false_mention_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "confusion_matrix": {
+        "observed": {
+          "observed": 32,
+          "hypothetical": 0,
+          "not_mentioned": 0
+        },
+        "hypothetical": {
+          "observed": 0,
+          "hypothetical": 64,
+          "not_mentioned": 0
+        },
+        "not_mentioned": {
+          "observed": 0,
+          "hypothetical": 0,
+          "not_mentioned": 32
+        }
+      }
+    },
+    "restate_interleaved": {
+      "planned_n": 32,
+      "valid_n": 32,
+      "missing_or_invalid_n": 0,
+      "target_false_observed_n": 0,
+      "valid_target_finding_n": 64,
+      "metrics": {
+        "target_false_observed_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "any_target_false_observed": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "classification_error_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "recognition_error_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "observed_miss_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "foil_false_mention_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "confusion_matrix": {
+        "observed": {
+          "observed": 32,
+          "hypothetical": 0,
+          "not_mentioned": 0
+        },
+        "hypothetical": {
+          "observed": 0,
+          "hypothetical": 64,
+          "not_mentioned": 0
+        },
+        "not_mentioned": {
+          "observed": 0,
+          "hypothetical": 0,
+          "not_mentioned": 32
+        }
+      }
+    },
+    "elaborate_immediate": {
+      "planned_n": 32,
+      "valid_n": 32,
+      "missing_or_invalid_n": 0,
+      "target_false_observed_n": 0,
+      "valid_target_finding_n": 64,
+      "metrics": {
+        "target_false_observed_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "any_target_false_observed": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "classification_error_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "recognition_error_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "observed_miss_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "foil_false_mention_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "confusion_matrix": {
+        "observed": {
+          "observed": 32,
+          "hypothetical": 0,
+          "not_mentioned": 0
+        },
+        "hypothetical": {
+          "observed": 0,
+          "hypothetical": 64,
+          "not_mentioned": 0
+        },
+        "not_mentioned": {
+          "observed": 0,
+          "hypothetical": 0,
+          "not_mentioned": 32
+        }
+      }
+    },
+    "elaborate_interleaved": {
+      "planned_n": 32,
+      "valid_n": 32,
+      "missing_or_invalid_n": 0,
+      "target_false_observed_n": 0,
+      "valid_target_finding_n": 64,
+      "metrics": {
+        "target_false_observed_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "any_target_false_observed": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "classification_error_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "recognition_error_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "observed_miss_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "foil_false_mention_rate": {
+          "mean": 0.0,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "confusion_matrix": {
+        "observed": {
+          "observed": 32,
+          "hypothetical": 0,
+          "not_mentioned": 0
+        },
+        "hypothetical": {
+          "observed": 0,
+          "hypothetical": 64,
+          "not_mentioned": 0
+        },
+        "not_mentioned": {
+          "observed": 0,
+          "hypothetical": 0,
+          "not_mentioned": 32
+        }
+      }
+    }
+  },
+  "contrasts": {
+    "elaboration_effect_immediate": {
+      "weights": {
+        "elaborate_immediate": 1,
+        "restate_immediate": -1
+      },
+      "planned_case_n": 32,
+      "complete_case_n": 32,
+      "missing_or_invalid_case_n": 0,
+      "metrics": {
+        "target_false_observed_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "any_target_false_observed": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "classification_error_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "recognition_error_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "observed_miss_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "foil_false_mention_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "elaboration_effect_interleaved": {
+      "weights": {
+        "elaborate_interleaved": 1,
+        "restate_interleaved": -1
+      },
+      "planned_case_n": 32,
+      "complete_case_n": 32,
+      "missing_or_invalid_case_n": 0,
+      "metrics": {
+        "target_false_observed_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "any_target_false_observed": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "classification_error_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "recognition_error_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "observed_miss_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "foil_false_mention_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "elaboration_by_interleaving": {
+      "weights": {
+        "elaborate_interleaved": 1,
+        "restate_interleaved": -1,
+        "elaborate_immediate": -1,
+        "restate_immediate": 1
+      },
+      "planned_case_n": 32,
+      "complete_case_n": 32,
+      "missing_or_invalid_case_n": 0,
+      "metrics": {
+        "target_false_observed_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "any_target_false_observed": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "classification_error_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "recognition_error_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "observed_miss_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "foil_false_mention_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "interleaving_effect_restate": {
+      "weights": {
+        "restate_interleaved": 1,
+        "restate_immediate": -1
+      },
+      "planned_case_n": 32,
+      "complete_case_n": 32,
+      "missing_or_invalid_case_n": 0,
+      "metrics": {
+        "target_false_observed_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "any_target_false_observed": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "classification_error_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "recognition_error_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "observed_miss_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "foil_false_mention_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "interleaving_effect_elaborate": {
+      "weights": {
+        "elaborate_interleaved": 1,
+        "elaborate_immediate": -1
+      },
+      "planned_case_n": 32,
+      "complete_case_n": 32,
+      "missing_or_invalid_case_n": 0,
+      "metrics": {
+        "target_false_observed_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "any_target_false_observed": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "classification_error_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "recognition_error_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "observed_miss_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        },
+        "foil_false_mention_rate": {
+          "mean_difference": 0.0,
+          "positive_case_n": 0,
+          "negative_case_n": 0,
+          "tied_case_n": 32,
+          "all_planned_bounds": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  },
+  "notes": {
+    "restate": {
+      "planned_n": 32,
+      "valid_n": 32,
+      "mean_word_count": 65.09375,
+      "min_word_count": 51,
+      "max_word_count": 73,
+      "mention_check_passed_n": 30,
+      "within_requested_length_band_n": 9,
+      "foil_id_mentioned_n": 0,
+      "semantic_review_pending_n": 32
+    },
+    "elaborate": {
+      "planned_n": 32,
+      "valid_n": 32,
+      "mean_word_count": 76.125,
+      "min_word_count": 69,
+      "max_word_count": 83,
+      "mention_check_passed_n": 30,
+      "within_requested_length_band_n": 31,
+      "foil_id_mentioned_n": 0,
+      "semantic_review_pending_n": 32
+    },
+    "paired_checks": {
+      "complete_pair_n": 32,
+      "mean_absolute_word_count_gap": 11.09375,
+      "word_count_gap_at_most_10_n": 18,
+      "both_mention_checks_passed_n": 28,
+      "used_for_filtering": false
+    }
+  },
+  "experimental_settings": {
+    "design_version": "source-status-v1",
+    "seed": 20261010,
+    "cases": 32,
+    "intervening_cases": 8,
+    "model": "gpt-4.1-mini-2025-04-14",
+    "note_max_output_tokens": 512,
+    "decision_max_output_tokens": 256
+  },
+  "run_config_path": "configs/source-status.json"
+}

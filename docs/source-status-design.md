@@ -4,6 +4,8 @@
 
 Does elaborating a hypothetical finding increase later reports that it was observed, beyond a similarly sized restatement? Does that difference grow when other case records intervene?
 
+The completed 32-case pilot found no classification errors in any condition. See the [results and note review](../results/source-status.md). The protocol below records the design used for that run.
+
 This version removes the numerical fault-ranking task. It measures explicit reports of a finding's status in the original record. It does not measure internal belief, elapsed-time forgetting, or independent recognition of authorship.
 
 ## Cases
