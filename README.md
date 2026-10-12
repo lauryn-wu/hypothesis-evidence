@@ -1,10 +1,10 @@
 # Hypothesis and evidence
 
-This project tests whether a language model confuses hypothetical findings with observations after explaining how they could occur.
-
-The completed pilot found no such errors in GPT-4.1-mini. The code, experimental design, and results are included here.
-
-The motivation is to test whether an assistant's own elaboration can be promoted into evidence during later synthesis. The comparison separates elaborating a hypothetical finding from merely repeating it, while keeping the original source available for checking.
+This pilot tests whether explaining a hypothetical finding makes a language
+model more likely to treat it as an observation later. GPT-4.1-mini made no such
+errors in the completed run. The original source stayed visible, so the
+experiment tests whether the model keeps track of source labels while adding
+its own explanations.
 
 ## Experiment
 
@@ -12,7 +12,9 @@ Each inspection record contains one observed finding and two hypothetical findin
 
 Classification happens immediately or after eight other case records. The same generated note is used for both conditions, and the original record remains visible throughout.
 
-Finding status rotates across cases within each template, so a particular finding is not always observed or always hypothetical. The observed and absent findings check whether the model preserves source distinctions more broadly. This is a test of explicit source-status classification with intervening text; it does not measure elapsed-time forgetting or memory after removing the source.
+Finding status rotates across cases within each template, so a particular
+finding is not always observed or always hypothetical. The observed and absent
+findings also check for errors beyond confusing hypotheses with observations.
 
 ## Results
 
@@ -25,11 +27,17 @@ Run `status-001` used `gpt-4.1-mini-2025-04-14`, with 32 paired cases drawn from
 | Causal explanation | Immediate | 0/64 | 0/128 |
 | Causal explanation | After eight other cases | 0/64 | 0/128 |
 
-The predicted elaboration effect did not appear. This is a narrow result: the model could consult explicit source labels, and even the longer prompts contained only about 1,400 input tokens. Note lengths also differed between writing conditions. Repeated conditions and findings within cases are not independent samples.
+Explaining the hypothetical findings and adding eight intervening records did
+not induce the proposed error. The model could still consult explicit source
+labels, and the longer prompts contained only about 1,400 input tokens. This
+leaves memory after source removal untested. Note lengths also differed between
+conditions, and repeated classifications within cases are not independent
+samples. No further runs are planned for this design.
 
-See the [results summary](results/source-status.md) for controls, note checks, and limitations, or the [JSON summary](results/source-status.json) for the numerical results. The current design is complete; no further runs are planned.
-
-The useful conclusion is that elaboration and a modest amount of intervening text were insufficient to induce the proposed error when the source labels stayed visible. A broader memory claim would require different evidence. The public results are aggregate exports; the original raw requests and responses are not included here.
+The [results summary](results/source-status.md) includes the controls, note
+checks, and limitations; the [JSON summary](results/source-status.json) contains
+the numerical results. These are aggregate exports. The original raw requests
+and responses are not included in the public repository.
 
 ## Run locally
 
