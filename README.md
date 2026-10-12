@@ -4,11 +4,15 @@ This project tests whether a language model confuses hypothetical findings with 
 
 The completed pilot found no such errors in GPT-4.1-mini. The code, experimental design, and results are included here.
 
+The motivation is to test whether an assistant's own elaboration can be promoted into evidence during later synthesis. The comparison separates elaborating a hypothetical finding from merely repeating it, while keeping the original source available for checking.
+
 ## Experiment
 
 Each inspection record contains one observed finding and two hypothetical findings. The model writes either a neutral restatement or a causal explanation of the hypothetical findings, then classifies them as observed, hypothetical, or absent from the original record. An additional finding, absent from the record, serves as a control.
 
 Classification happens immediately or after eight other case records. The same generated note is used for both conditions, and the original record remains visible throughout.
+
+Finding status rotates across cases within each template, so a particular finding is not always observed or always hypothetical. The observed and absent findings check whether the model preserves source distinctions more broadly. This is a test of explicit source-status classification with intervening text; it does not measure elapsed-time forgetting or memory after removing the source.
 
 ## Results
 
@@ -24,6 +28,8 @@ Run `status-001` used `gpt-4.1-mini-2025-04-14`, with 32 paired cases drawn from
 The predicted elaboration effect did not appear. This is a narrow result: the model could consult explicit source labels, and even the longer prompts contained only about 1,400 input tokens. Note lengths also differed between writing conditions. Repeated conditions and findings within cases are not independent samples.
 
 See the [results summary](results/source-status.md) for controls, note checks, and limitations, or the [JSON summary](results/source-status.json) for the numerical results. The current design is complete; no further runs are planned.
+
+The useful conclusion is that elaboration and a modest amount of intervening text were insufficient to induce the proposed error when the source labels stayed visible. A broader memory claim would require different evidence. The public results are aggregate exports; the original raw requests and responses are not included here.
 
 ## Run locally
 
